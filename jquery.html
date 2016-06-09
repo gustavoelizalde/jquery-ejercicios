@@ -33,15 +33,19 @@
 
       .blue {
         background: blue;
+        transition: .1s;
       }
       .red {
         background: red;
+        transition: .1s;
       }
       .green {
         background: green;
+        transition: .1s;
       }
       .yellow {
         background: yellow;
+        transition: .1s;
       }
 
     </style>
@@ -59,6 +63,8 @@
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 
     <script type="text/javascript">
+      
+      /* EJERCICIO 1 
       var color = [];
 
       $(".boton").on("click", function(){
@@ -79,6 +85,73 @@
         }
 
       }, 2000);
+
+      */
+
+      /* VARIABLES PARA COLORES */
+      var colors = ["blue", "red", "green", "yellow"];
+      var colors_pc = [];
+      var colors_pc_animado = [];
+      var colors_yo = [];
+
+
+      /* FUNCION PARA ELEGIR COLORES PC */
+      var ColoresPC = function(){
+        for (i=1; i <= 8; i++){
+              val = Math.floor((Math.random() * 3) + 0);
+              colors_pc.push(colors[val]);
+              colors_pc_animado.push(colors[val]);
+        }
+        console.log(colors_pc_animado);
+
+        setInterval( function(){
+    
+          if (colors_pc_animado.length >= 1) {
+
+            $("body").prop("class", "");
+            $("body").addClass(colors_pc_animado.pop());
+            console.log(colors_pc_animado);
+
+          }
+
+        }, 500);
+      }
+
+      // FUNCION PARA COMPARAR COLORES
+      var CompareColors = function(){
+        for (var i = 0; i < 8; i++) {
+          if (colors_yo[i] != colors_pc[i]){
+            return false;
+          } else {
+            return true;
+          }
+        }
+      }
+
+
+      $(".boton").on("click", function(){
+        
+        // Muestra color seleccionado por usuario
+        $("body").prop("class", "");
+        $("body").addClass($(this).attr('data-color'));
+
+        // Ingresa colores seccionados por usuario y los compara con los del PC
+        if(colors_yo.length < 8) {
+          colors_yo.push($(this).attr('data-color'));
+          console.log(colors_yo);
+        } else {
+          console.log("Ya no puedes seleccionar mas");
+          if (CompareColors()) {
+            console.log("Ganaste");
+          } else {
+            console.log("Perdiste");
+          }
+        }
+      });
+
+      // LLAMA FUNCION PARA ESCOGER COLORES PC
+      ColoresPC();
+      
 
     </script>
 
