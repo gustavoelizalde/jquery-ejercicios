@@ -1,0 +1,86 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Ejercicios Varios</title>
+    
+    <style type="text/css">
+
+      
+      .boton {
+        width: 50px;
+        height: 50px;
+        background: black;
+        display: block;
+        margin: 0 auto;
+        cursor: pointer;
+      }
+
+      .clearfix {
+        clear: both;
+        display: block;
+      }
+
+      .boton.left {
+        float: left;
+      }
+      .boton.right {
+        float: right;
+      }
+
+      .blue {
+        background: blue;
+      }
+      .red {
+        background: red;
+      }
+      .green {
+        background: green;
+      }
+      .yellow {
+        background: yellow;
+      }
+
+    </style>
+    
+  </head>
+  <body>
+
+    <div class="boton left blue" data-color="blue"></div>
+    <div class="boton right red" data-color="red"></div>
+    <div class="clearfix"></div>
+    <div class="boton left green" data-color="green"></div>
+    <div class="boton right yellow" data-color="yellow"></div>
+    
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
+    <script type="text/javascript">
+      var color = [];
+
+      $(".boton").on("click", function(){
+        
+        color.push($(this).attr('data-color'));
+        console.log(color);
+
+      });
+
+      setInterval( function(){
+        
+        if (color.length >= 1) {
+
+          $("body").prop("class", "");
+          $("body").addClass(color.pop());
+          console.log(color);
+
+        }
+
+      }, 2000);
+
+    </script>
+
+  </body>
+</html>
